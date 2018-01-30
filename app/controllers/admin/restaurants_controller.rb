@@ -26,6 +26,20 @@ class Admin::RestaurantsController < ApplicationController
 
     end
 
+    def edit
+    
+    end
+
+    def update
+      if @restaurant.update(restaurant_params)
+        flash[:notice] = "restaurant was successfully updated"
+        redirect_to admin_restaurant_path(@restaurant)
+      else
+        flash.now[:alert] = "restaurant was failed to update"
+        render :edit
+      end
+    end
+
     def destroy
       @restaurant.destroy
       redirect_to admin_restaurants_path
@@ -35,14 +49,7 @@ class Admin::RestaurantsController < ApplicationController
     private
 
     def restaurant_params
-        params.require(:restaurant).permit(
-            :name,
-            :opening_hours,
-            :tel,
-            :address,
-            :description,
-            :image
-        )
+      params.require(:restaurant).permit(:name, :opening_hours, :tel, :address, :description, :image, :category_id)
     end
 
     def authenticate_admin
