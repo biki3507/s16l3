@@ -1,7 +1,8 @@
 class Admin::RestaurantsController < ApplicationController
     before_action :authenticate_user!
     before_action :authenticate_admin
-
+    before_action :set_restaurant, only: [:show, :edit, :update]
+    
     def index
       @restaurants = Restaurant.all
     end
@@ -22,7 +23,7 @@ class Admin::RestaurantsController < ApplicationController
     end
 
     def show
-      @restaurant = Restaurant.find(params[:id])
+
     end
     private
 
@@ -41,5 +42,8 @@ class Admin::RestaurantsController < ApplicationController
         flash[:alert] = 'Not allow!'
         redirect_to root_path
       end
+    end
+    def set_restaurant
+      @restaurant = Restaurant.find(params[:id])
     end
 end
