@@ -37,9 +37,7 @@
       <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
     </div>
        
-      <% if current_user.admin? %>
-    <%= link_to "Delete", restaurant_comment_path(@restaurant, comment), method: :delete %>
-  <% end %>
+      
   <% end %>
   </div>
 </div>
@@ -50,6 +48,9 @@
       <p><%= simple_format comment.content %></p>
       <p class="text-muted">
         <em><%= comment.created_at %> </em>
+        <% if current_user.admin? %>
+    <%= link_to "Delete", restaurant_comment_path(@restaurant, comment), method: :delete %>
+  <% end %>
       </p>
     </div>
     <hr>
