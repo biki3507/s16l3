@@ -5,6 +5,15 @@ Rails.application.routes.draw do
   resources :categories, only: :show
   resources :restaurants do
     resources :comments
+        # 瀏覽所有餐廳的最新動態
+        collection do
+          get :feeds
+        end
+    
+        # 瀏覽個別餐廳的 Dashboard
+        member do
+          get :dashboard
+        end
   end
 
   namespace :admin do
