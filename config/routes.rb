@@ -13,7 +13,11 @@ Rails.application.routes.draw do
         # 瀏覽個別餐廳的 Dashboard
         member do
           get :dashboard
+          post :favorite
+          post :unfavorite
         end
+
+    
   end
 
   namespace :admin do
