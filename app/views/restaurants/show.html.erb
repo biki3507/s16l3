@@ -36,10 +36,14 @@
       <%= f.submit class: "btn btn-primary" %>
       <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
     </div>
+       
+      <% if current_user.admin? %>
+    <%= link_to "Delete", restaurant_comment_path(@restaurant, comment), method: :delete %>
+  <% end %>
   <% end %>
   </div>
 </div>
-    <!-- 顯示與餐廳相關的評論 -->
+ <!-- 顯示與餐廳相關的評論 -->
     <% @restaurant.comments.each do |comment| %>
     <div>
       <h4><%= comment.user.email %></h4>
