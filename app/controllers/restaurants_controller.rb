@@ -9,5 +9,6 @@ class RestaurantsController < ApplicationController
         @categories = Category.all
         @category = Category.find(params[:id])
         @restaurants = @category.restaurants.page(params[:page]).per(9)
+        @comment = Comment.new
     end
 end
